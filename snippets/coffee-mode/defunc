@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: defunc:(...)->...
+# key: df
+# --
+(${1:evt})->$0

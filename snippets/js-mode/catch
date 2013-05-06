@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: catch(e){..}
+# key: catch
+# --
+catch(e){
+		$0
+}

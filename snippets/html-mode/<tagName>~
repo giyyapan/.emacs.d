@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: <tagName>..</tagName>
+# key: tag
+# binding: C-M-,
+# --
+<${1:template} $0>
+
+</$1>

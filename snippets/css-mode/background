@@ -1,0 +1,4 @@
+#name : background:url(..) no-repeat..;
+#key : bg
+# --
+background: url($1) ${no-repeat} ${};

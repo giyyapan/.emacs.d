@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: log:printf("...\n");
+# key: log
+# --
+printf("$1\n");

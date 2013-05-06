@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: <a href=..><img..>..//
+# key: aimg
+# --
+<a href="${#}"><img src="${}" class="${}" alt="${}"/>${}</a>

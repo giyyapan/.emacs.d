@@ -1,0 +1,7 @@
+#name : do { ... } while (...)
+#key :dowhile
+# --
+do
+{
+    $0
+} while (${1:condition});

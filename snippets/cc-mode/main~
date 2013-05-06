@@ -1,0 +1,8 @@
+# name: int main() { ... }
+# key: main
+# --
+int main(){
+    $0
+    ${system('pause');}
+    return 0;
+}

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: function ..()
+# key: df
+# --
+function $1($2){
+		$0
+}

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: tag
+# key: tag
+# --
+console.log("${enter}");

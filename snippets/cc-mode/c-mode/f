@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: func(){}
+# key: f
+# --
+${void} ${func}(${}){
+	$0	
+}

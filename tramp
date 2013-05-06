@@ -1,0 +1,18 @@
+;; -*- emacs-lisp -*-
+;; Tramp connection history.  Don't change this file.
+;; You can delete it, forcing Tramp to reapply the checks.
+
+((["sudo" "root" "localhost" nil]
+  ("uname" "Linux 3.2.13-1-ARCH")
+  ("test" "test")
+  ("remote-path"
+   ("/bin" "/usr/bin" "/usr/sbin" "/usr/local/bin"))
+  ("remote-shell" "/bin/sh")
+  ("perl-file-spec" t)
+  ("perl-cwd-realpath" t)
+  ("perl" "\\perl")
+  ("stat" "\\stat")
+  ("file-exists" "test -e")
+  ...)
+ (["scpc" nil "http" nil]
+  nil))

@@ -1,0 +1,4 @@
+/etc/modprobe.d/bbswitch.conf
+/etc/modprobe.d/#bbswitch.conf#
+/etc/bumblebee/bumblebee.conf
+/etc/bumblebee/#bumblebee.conf#

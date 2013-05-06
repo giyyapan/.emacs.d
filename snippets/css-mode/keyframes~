@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: kf:@keyframes{..}
+# key: kf
+# --
+@${1:-webkit-}keyframes ${2:name}{
+}

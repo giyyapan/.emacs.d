@@ -1,0 +1,4 @@
+/etc/hosts
+/etc/#hosts#
+/etc/nginx/sites-enabled/default
+/etc/nginx/sites-enabled/#default#

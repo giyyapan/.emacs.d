@@ -1,0 +1,4 @@
+/etc/udev/rules.d/10-wacom.rules
+/etc/udev/rules.d/#10-wacom.rules#
+/etc/udev/rules.d/10-wacom.rules~
+/etc/udev/rules.d/#10-wacom.rules~#

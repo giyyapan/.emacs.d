@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: defunc:(...)->...
+# key: df
+# --
+($1)->
+$0

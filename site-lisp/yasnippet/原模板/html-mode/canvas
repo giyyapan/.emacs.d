@@ -1,0 +1,6 @@
+#name :<canvas id="">..</canvas> 
+#key : canvas
+#--
+<canvas ${id} = ${canvas}>
+  ${Your browser does not support th HTML5 Canvas!}
+</canvas>

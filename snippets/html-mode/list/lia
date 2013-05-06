@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: <li><a href=..>..//
+# key: lia
+# --
+<li><a href="$1">$2</a></li>
