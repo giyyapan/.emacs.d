@@ -184,8 +184,9 @@
 (define-key c-mode-base-map [(f9)] 'compile)
 (global-set-key [(f10)] 'gdb)
 
-(global-set-key [(f1)] 'bookmark-set)
-(global-set-key [(f2)] 'bookmark-jump)
+;(global-set-key [(f1)] 'bookmark-set)
+;(global-set-key [(f2)] 'bookmark-jump)
+(global-set-key [(f1)] 'auto-complete-mode)
 
 (global-set-key (kbd "M-.") 'semantic-ia-show-summary)
 (global-set-key (kbd "M-RET") 'semantic-ia-fast-jump)
