@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: <tag>inline</tag>
+# key: tl
+# --
+<${1:tag} >$0</$1>

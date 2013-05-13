@@ -1,10 +1,4 @@
-(if window-system 2
- (set-fontset-font (frame-parameter nil 'font)
-	  'unicode '("simsun" . "unicode-bmp"))
-)
 
-(set-language-environment "Chinese-GBK")
-(set-keyboard-coding-system 'chinese-iso-8bit)
 (setq default-buffer-file-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (prefer-coding-system 'utf-8)
@@ -31,7 +25,7 @@
 
 ;(cua-mode t)
 ;(menu-bar-mode -1)
-(tool-bar-mode nil)
+(tool-bar-mode 0)
 ;=============================================
 ;            Basic Edit Setting
 ;=============================================
@@ -72,8 +66,8 @@
 (gud-tooltip-mode t)
 (setq column-number-mode t)
 
-;cursor dosn't blink
-(blink-cursor-mode -1)
+;cursor dosn't blink 
+;(blink-cursor-mode 1)
 
 
 ;switch window
