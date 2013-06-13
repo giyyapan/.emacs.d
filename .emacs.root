@@ -1,0 +1,123 @@
+;(if window-system 2
+; (set-fontset-font (frame-parameter nil 'font)
+;; 	  'unicode '("simsun" . "unicode-bmp"))
+;; )
+
+;; (set-language-environment "Chinese-GBK")
+;; (set-keyboard-coding-system 'chinese-iso-8bit)
+(setq default-buffer-file-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(prefer-coding-system 'utf-8)
+
+;(cua-mode t)
+;(menu-bar-mode -1)
+(tool-bar-mode 0)
+
+;=============================================
+;            Basic Edit Setting
+;=============================================
+(defun open-init-file ( )  
+  (interactive)  
+  (find-file "~/.emacs"))  
+(global-set-key "\C-ci" 'open-init-file)  
+
+;(global-set-key "\C-z" 'undo)
+(global-set-key "\C-z" nil)
+(global-set-key (kbd "C-<") 'beginning-of-buffer)
+(global-set-key (kbd "C->") 'end-of-buffer)
+
+(global-set-key "\C-cl" 'goto-line)
+
+(setq default-tab-width 2)
+(setq tab-width 2)
+
+(global-set-key [f1] 'save-buffer)
+
+;允许剪贴板粘贴
+(global-set-key "\C-c\C-v" 'clipboard-yank)  
+(global-set-key (kbd "C-`") 'ibuffer)  
+
+;;没有提示音
+(setq ring-bell-function 'ignore)
+
+(global-font-lock-mode t)
+(setq inhibit-startup-message t)
+
+(setq x-select-enable-clipboard t)
+
+;;显示行号
+(global-linum-mode t)
+
+(fset 'yes-or-no-p 'y-or-n-p)
+(show-paren-mode t)
+(gud-tooltip-mode t)
+(setq column-number-mode t)
+
+;cursor dosn't blink
+(blink-cursor-mode -1)
+
+
+;switch window
+(global-set-key [M-left] 'windmove-left)
+(global-set-key [M-right] 'windmove-right)
+
+(global-set-key [M-up] 'windmove-up)
+(global-set-key [M-down] 'windmove-down)
+
+(global-set-key "\M-n" 'next-multiframe-window)
+(global-set-key "\M-p" 'previous-multiframe-window)
+
+;================creat pire char ==========
+(defun create-pair (a b)
+  (interactive)  
+  (progn
+	(insert-string a)
+	(insert-string b)
+	(backward-char (length b)))
+  )
+(defmacro gen-pair-handler (a b)
+  (list 'lambda (list)
+		 (list 'interactive)
+		(list 'create-pair a b)
+		)
+  )
+
+(defun create-string (string)
+  (interactive)  
+  (progn
+	(insert-string string)
+	)
+  )
+(defmacro gen-creat-string (string)
+  (list 'lambda (list)
+		 (list 'interactive)
+		(list 'create-string string)
+		)
+ )
+
+(global-set-key (kbd "M-{") (gen-pair-handler "{" "}"))
+(global-set-key (kbd "M-(") (gen-pair-handler "(" ")"))
+(global-set-key (kbd "M-\"") (gen-pair-handler "\"" "\""))
+(global-set-key (kbd "M-'") (gen-pair-handler "'" "'"))
+(global-set-key (kbd "M-[") (gen-pair-handler "[" "]"))
+(global-set-key (kbd "M-<") (gen-pair-handler "<" ">"))
+
+(global-set-key (kbd "M->") (gen-creat-string "->"))
+(global-set-key (kbd "M-C->") (gen-creat-string "=>"))
+
+(global-set-key (kbd "M-_") 'backward-paragraph)
+(global-set-key (kbd "M-+") 'forward-paragraph)
+;删除到行首
+(global-set-key (kbd "C-M-<backspace>") "\C-u0\C-k")
+
+;========================End========================
+
+
+;;C-h w   C-h k
+;;C-x r t 在选中行的行首添加字符，字符需要输入，可以是tab
+;;C-x r k 删除选中行行首数个字符，个数由当前光标停留的列数决定
+;;C-u 0 k 或 C-M-backspace 删除到行首
+;;cua-mode
+;;semantic-mode
+;;C-x C-SPC 回到上一个位置
+
