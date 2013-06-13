@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: define class
+# key: dc
+# --
+class ${1:ClassName}
+			constructor:(${2:})->$0
