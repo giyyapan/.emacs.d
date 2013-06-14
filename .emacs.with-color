@@ -1,0 +1,328 @@
+;(if window-system 2
+; (set-fontset-font (frame-parameter nil 'font)
+;; 	  'unicode '("simsun" . "unicode-bmp"))
+;; )
+
+;; (set-language-environment "Chinese-GBK")
+;; (set-keyboard-coding-system 'chinese-iso-8bit)
+(setq default-buffer-file-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(prefer-coding-system 'utf-8)
+;;===============color===============
+(deftheme bubbleberry "bubbleberry")
+ 
+;; Based on the theme used for LightTable (see: http://www.chris-granger.com/images/lightable/main.png )
+ 
+(custom-theme-set-variables
+ 'bubbleberry
+ '(linum-format " %3d ")
+ '(fringe-mode 5 nil (fringe))
+ '(powerline-color1 "#3d3d68")
+ '(powerline-color2 "#292945")
+ )
+ 
+(custom-theme-set-faces
+ 'bubbleberry
+ 
+ ;; basic theming.
+ '(default                          ((t (:foreground "#ABAEB3" :background "#222222" ))))
+ '(region                           ((t (:background "#101010" ))))
+ '(cursor                           ((t (:background "#ffffff" ))))
+ '(fringe                           ((t (:background "#2f2f2f" :foreground "#ffffff" ))))
+ '(linum                            ((t (:background "#202020" :foreground "grey22" :box nil :height 100 ))))
+ '(minibuffer-prompt                ((t (:foreground "#9489C4" :weight bold ))))
+ '(minibuffer-message               ((t (:foreground "#ffffff" ))))
+ '(mode-line                        ((t (:foreground "#FFFFFF" :background "#191919" ))))
+ '(mode-line-inactive               ((t (:foreground "#777777" :background "#303030" :weight light :box nil :inherit (mode-line )))))
+ 
+ '(font-lock-keyword-face           ((t (:foreground "#3ca380"))))
+ '(font-lock-type-face              ((t (:foreground "#484879"))))
+ '(font-lock-constant-face          ((t (:foreground "#3F5C70"))))
+ '(font-lock-variable-name-face     ((t (:foreground "#547B96"))))
+ '(font-lock-builtin-face           ((t (:foreground "#6767AE"))))
+ '(font-lock-string-face            ((t (:foreground "#699ABC"))))
+ '(font-lock-comment-face           ((t (:foreground "#496b83"))))
+ '(font-lock-comment-delimiter-face ((t (:foreground "#666688"))))
+ 
+ '(font-lock-function-name-face     ((t (:foreground "#3ca380"))))
+ '(font-lock-doc-string-face        ((t (:foreground "#496B83"))))
+ 
+ ;; easy defaults...
+ '(tooltip ((default nil) (nil nil)))
+ '(next-error ((t          (:inherit (region)))))
+ '(query-replace ((t       (:inherit (isearch)))))
+ '(button ((t              (:inherit (link)))))
+ '(fixed-pitch ((t         (:family "Monospace")))) 
+ '(variable-pitch ((t      (:family "Sans Serif"))))
+ '(escape-glyph ((t        (:foreground "#FF6600"))))
+ '(mode-line-emphasis ((t  (:weight bold))))
+ '(mode-line-highlight ((t (:box nil (t (:inherit (highlight)))))))
+  
+ '(highlight 
+   ((((class color) (min-colors 88) (background light)) (:background "#003453")) 
+    (((class color) (min-colors 88) (background dark))  (:background "#003450")) 
+    (((class color) (min-colors 16) (background light)) (:background "#003450")) 
+    (((class color) (min-colors 16) (background dark))  (:background "#004560")) 
+    (((class color) (min-colors 8))                     (:foreground "#000000" :background "#00FF00")) (t (:inverse-video t))))
+ 
+ '(shadow 
+   ((((class color grayscale) (min-colors 88) (background light)) (:foreground "#999999")) 
+    (((class color grayscale) (min-colors 88) (background dark))  (:foreground "#999999"))
+    (((class color) (min-colors 8) (background light))            (:foreground "#00ff00"))
+    (((class color) (min-colors 8) (background dark))             (:foreground "#ffff00"))))
+  
+ '(trailing-whitespace
+   ((((class color) (background light)) (:background "#ff0000"))
+    (((class color) (background dark))  (:background "#ff0000")) (t (:inverse-video t))))
+  
+ '(link
+   ((((class color) (min-colors 88) (background light)) (:underline t :foreground "#00b7f0")) 
+    (((class color) (background light))                 (:underline t :foreground "#0044FF")) 
+    (((class color) (min-colors 88) (background dark))  (:underline t :foreground "#0099aa"))
+    (((class color) (background dark))                  (:underline t :foreground "#0099aa")) (t (:inherit (underline)))))
+  
+ '(link-visited 
+   ((default                            (:inherit (link))) 
+    (((class color) (background light)) (:inherit (link))) 
+    (((class color) (background dark))  (:inherit (link)))))
+  
+ '(header-line 
+   ((default                                      (:inherit (mode-line))) (((type tty)) (:underline t :inverse-video nil)) 
+    (((class color grayscale) (background light)) (:box nil :foreground "#222222" :background "#bbbbbb")) 
+    (((class color grayscale) (background dark))  (:box nil :foreground "#bbbbbb" :background "#222222")) 
+    (((class mono) (background light))            (:underline t :box nil :inverse-video nil :foreground "#000000" :background "#ffffff")) 
+    (((class mono) (background dark))             (:underline t :box nil :inverse-video nil :foreground "#ffffff" :background "#000000"))))
+  
+ '(isearch
+   ((((class color) (min-colors 88) (background light)) (:foreground "#99ccee" :background "#444444")) 
+    (((class color) (min-colors 88) (background dark))  (:foreground "#ffaaaa" :background "#444444")) 
+    (((class color) (min-colors 16))                    (:foreground "#0088cc" :background "#444444"))
+    (((class color) (min-colors 8))                     (:foreground "#0088cc" :background "#444444")) (t (:inverse-video t))))
+  
+ '(isearch-fail
+   ((((class color) (min-colors 88) (background light)) (:background "#ffaaaa"))
+    (((class color) (min-colors 88) (background dark))  (:background "#880000"))
+    (((class color) (min-colors 16))                    (:background "#FF0000"))
+    (((class color) (min-colors 8))                     (:background "#FF0000"))
+    (((class color grayscale))                          (:foreground "#888888")) (t (:inverse-video t))))
+  
+ '(lazy-highlight
+   ((((class color) (min-colors 88) (background light)) (:foreground "#000000" :background "#77bbdd"))
+    (((class color) (min-colors 88) (background dark)) (:foreground "#000000" :background "#77bbdd"))
+    (((class color) (min-colors 16)) (:background "#4499ee"))
+    (((class color) (min-colors 8)) (:background "#4499ee")) (t (:underline t))))
+  
+ '(match
+   ((((class color) (min-colors 88) (background light)) (:background "#3388cc"))
+    (((class color) (min-colors 88) (background dark)) (:background "#3388cc"))
+    (((class color) (min-colors 8) (background light)) (:foreground "#000000" :background "#FFFF00"))
+    (((class color) (min-colors 8) (background dark)) (:foreground "#ffffff" :background "#0000FF")) 
+    (((type tty) (class mono)) (:inverse-video t)) (t (:background "#888888"))))
+)
+ 
+(provide-theme 'bubbleberry)
+
+
+(add-to-list 'load-path "~/.emacs.d/site-lisp")
+;============================================
+;             GLSL Mode
+;============================================
+(load-file"~/.emacs.d/site-lisp/glsl-mode.el")
+
+;============================================
+;             json Mode
+;============================================
+(load-file"~/.emacs.d/site-lisp/json-mode/json-mode.el")
+
+;============================================
+;             less Mode
+;============================================
+(load-file"~/.emacs.d/site-lisp/less-css-mode/less-css-mode.el")
+
+
+;(load-file"~/.emacs.d/site-lisp/color-theme/themes/color-theme-library.el")
+;(color-theme-arjen)
+
+;(cua-mode t)
+;(menu-bar-mode -1)
+(tool-bar-mode 0)
+(scroll-bar-mode 0)
+;=============================================
+;            Basic Edit Setting
+;=============================================
+(defun open-init-file ( )  
+  (interactive)  
+  (find-file "~/.emacs"))  
+(global-set-key "\C-ci" 'open-init-file)  
+
+;(global-set-key "\C-z" 'undo)
+;(global-set-key "\C-z" nil)
+(global-set-key (kbd "C-<") 'beginning-of-buffer)
+(global-set-key (kbd "C->") 'end-of-buffer)
+
+(global-set-key "\C-cl" 'goto-line)
+
+(setq default-tab-width 2)
+(setq tab-width 2)
+
+(global-set-key [f1] 'save-buffer)
+
+;允许剪贴板粘贴
+(global-set-key "\C-c\C-v" 'clipboard-yank)  
+(global-set-key (kbd "C-`") 'ibuffer)  
+
+;;没有提示音
+(setq ring-bell-function 'ignore)
+
+(global-font-lock-mode t)
+(setq inhibit-startup-message t)
+
+(setq x-select-enable-clipboard t)
+
+;;显示行号
+(global-linum-mode t)
+
+(fset 'yes-or-no-p 'y-or-n-p)
+(show-paren-mode t)
+(gud-tooltip-mode t)
+(setq column-number-mode t)
+
+;cursor dosn't blink
+(blink-cursor-mode -1)
+
+
+;switch window
+(global-set-key [M-left] 'windmove-left)
+(global-set-key [M-right] 'windmove-right)
+
+(global-set-key [M-up] 'windmove-up)
+(global-set-key [M-down] 'windmove-down)
+
+(global-set-key "\M-n" 'next-multiframe-window)
+(global-set-key "\M-p" 'previous-multiframe-window)
+
+;================creat pire char ==========
+(defun create-pair (a b)
+  (interactive)  
+  (progn
+	(insert-string a)
+	(insert-string b)
+	(backward-char (length b)))
+  )
+(defmacro gen-pair-handler (a b)
+  (list 'lambda (list)
+		 (list 'interactive)
+		(list 'create-pair a b)
+		)
+  )
+
+(defun create-string (string)
+  (interactive)  
+  (progn
+	(insert-string string)
+	)
+  )
+(defmacro gen-creat-string (string)
+  (list 'lambda (list)
+		 (list 'interactive)
+		(list 'create-string string)
+		)
+ )
+
+(global-set-key (kbd "M-{") (gen-pair-handler "{" "}"))
+(global-set-key (kbd "M-(") (gen-pair-handler "(" ")"))
+(global-set-key (kbd "M-\"") (gen-pair-handler "\"" "\""))
+(global-set-key (kbd "M-'") (gen-pair-handler "'" "'"))
+(global-set-key (kbd "M-[") (gen-pair-handler "[" "]"))
+(global-set-key (kbd "M-<") (gen-pair-handler "<" ">"))
+
+(global-set-key (kbd "M->") (gen-creat-string "->"))
+(global-set-key (kbd "M-C->") (gen-creat-string "=>"))
+
+(global-set-key (kbd "M-_") 'backward-paragraph)
+(global-set-key (kbd "M-+") 'forward-paragraph)
+;========================End========================
+
+;;===================php-mode================
+(add-to-list 'load-path"~/.emacs.d/site-lisp/php-mode-1.5.0")
+(require 'php-mode)
+
+;;==============yasnippet=======================
+(add-to-list 'load-path"~/.emacs.d/site-lisp/yasnippet")
+ (require 'yasnippet)
+
+(yas/initialize) 
+(yas/load-directory "~/.emacs.d/snippets")
+
+
+;;==============coffee-mode=================
+(add-to-list 'load-path"~/.emacs.d/site-lisp/coffee-mode/")
+ (require 'coffee-mode)
+
+;;==============auto-complete===================
+(add-to-list 'load-path"~/.emacs.d/site-lisp/auto-complete-1.3.1/")
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/site-lisp/ac-dict")
+(ac-config-default)
+(auto-complete-mode t)
+
+(define-key ac-complete-mode-map "<return>"   'nil)
+(define-key ac-complete-mode-map "RET"        'nil)
+(define-key ac-complete-mode-map "<C-return>" 'ac-complete)
+
+
+;; ;==========================================
+
+;; (add-to-list 'load-path "~/.emacs.d/site-lisp/slime-2012-08-01")
+;; (setq inferior-lisp-program "/usr/bin/sbcl")  ;SBCL or Clisp
+;; (require 'slime)
+;; (slime-setup '(slime-fancy))
+;; ;(slime) ;M-x slime
+
+  
+;;================c===================
+;; (require 'cc-mode)
+;; (c-set-offset 'inline-open 0)
+;; (c-set-offset 'friend '-)
+;; (c-set-offset 'substatement-open 0)
+
+;; ;;编译
+;; (defun get-compile-command-c()
+;;   "A quick compile funciton for C"
+;;   (interactive)
+;;   (setq compile-command (concat "gcc " (buffer-name (current-buffer)) " -Wall -std=c99 -g -o out"
+;;   ))
+;;   (message (concat "set compile command:" compile-command))
+;;   )
+
+;;快捷键F9
+;(define-key c-mode-base-map [(f8)] 'get-compile-command-c)
+(define-key c-mode-base-map [(f9)] 'compile)
+(global-set-key [(f10)] 'gdb)
+
+;(global-set-key [(f1)] 'bookmark-set)
+;(global-set-key [(f2)] 'bookmark-jump)
+(global-set-key [(f1)] 'auto-complete-mode)
+
+(global-set-key (kbd "M-.") 'semantic-ia-show-summary)
+(global-set-key (kbd "M-RET") 'semantic-ia-fast-jump)
+;删除到行首
+(global-set-key (kbd "C-M-<backspace>") "\C-u0\C-k")
+
+;;C-h w   C-h k
+;;M-; 批量注释，或取消注释
+;;C-x r t 在选中行的行首添加字符，字符需要输入，可以是tab
+;;C-x r k 删除选中行行首数个字符，个数由当前光标停留的列数决定
+;;C-u 0 k 或 C-M-backspace 删除到行首
+;;cua-mode
+;;semantic-mode
+;;C-x C-SPC 回到上一个位置
+
+;;================package=============
+(require 'package)
+(add-to-list 'package-archives 
+    '("marmalade" .
+      "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
+
