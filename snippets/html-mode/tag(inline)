@@ -1,5 +1,6 @@
 # -*- mode: snippet -*-
 # name: <tag>inline</tag>
 # key: tl
+# binding: C-M-,
 # --
 <${1:tag} >$0</$1>

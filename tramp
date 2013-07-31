@@ -1,18 +1,22 @@
-;; -*- emacs-lisp -*-
+;; -*- emacs-lisp -*- <13/06/20 16:18:16 /home/giyya/.emacs.d/tramp>
 ;; Tramp connection history.  Don't change this file.
 ;; You can delete it, forcing Tramp to reapply the checks.
 
-((["sudo" "root" "localhost" nil]
-  ("uname" "Linux 3.2.13-1-ARCH")
-  ("test" "test")
-  ("remote-path"
-   ("/bin" "/usr/bin" "/usr/sbin" "/usr/local/bin"))
-  ("remote-shell" "/bin/sh")
-  ("perl-file-spec" t)
-  ("perl-cwd-realpath" t)
-  ("perl" "\\perl")
-  ("stat" "\\stat")
-  ("file-exists" "test -e")
-  ...)
- (["scpc" nil "http" nil]
-  nil))
+((["scpc" "giyya" "ac" nil nil]
+	("uname" "Linux 2.6.32-042stab068.8")
+	("test" "test")
+	("remote-path"
+	 ("/bin" "/usr/bin" "/sbin" "/usr/sbin" "/usr/local/bin" "/usr/local/sbin"))
+	("remote-shell" "/bin/sh")
+	("busybox" nil)
+	("perl-file-spec" t)
+	("perl-cwd-realpath" t)
+	("perl" "\\perl")
+	("~" "/home/giyya")
+	("readlink" "\\readlink")
+	("stat" "\\stat")
+	("file-exists" "test -e")
+	("id" "/usr/bin/id")
+	("gid-integer" 1000)
+	("uid-integer" 1000)
+	("ls" "/bin/ls --color=never")))

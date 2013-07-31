@@ -1,7 +1,6 @@
 # -*- mode: snippet -*-
 # name: <tagName>..</tagName>
 # key: t
-# binding: C-M-,
 # --
 <${1:template} $0>
 

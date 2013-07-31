@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: none:style=display:none
+# key: none
+# --
+style="display:none;"
