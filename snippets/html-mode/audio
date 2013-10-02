@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: <audo>
+# name: <audio>
 # key: audio
 # --
 <audio src="&1">

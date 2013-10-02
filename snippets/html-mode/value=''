@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: value='..'
+# key: value
+# --
+value="$1" $0
