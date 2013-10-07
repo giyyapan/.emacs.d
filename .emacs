@@ -436,12 +436,8 @@ If point reaches the end of buffer, it stops there."
 								 (next-line))
 							 (previous-line)
 							 (beginning-of-line-text)))
-						((< nextIndent (current-indent))
-						 (progn;下行缩进比此行浅
-							 (next-line)
-							 (beginning-of-line-text)))
 						(t
-						 (progn;下行缩进比此行深
+						 (progn;下行缩进与此行不同
 							 (next-line)
 							 (if cursorAtBlank?;光标处于空白处，跳到缩进块尾部
 								 (progn
@@ -449,7 +445,7 @@ If point reaches the end of buffer, it stops there."
 										 (next-line))
 									 (previous-line))
 								 (progn
-									 (while (< currentIndent (current-indent))
+									 (while (/= currentIndent (current-indent))
 										 (next-line))
 									 (beginning-of-line-text))
 								 )))))))
@@ -461,18 +457,16 @@ If point reaches the end of buffer, it stops there."
 			(save-excursion
 				(previous-line)
 				(setq previousIndent (current-indent)))
-			(cond ((= previousIndent currentIndent)
+			(cond ((and
+							(not cursorAtBlank?)
+							(= previousIndent currentIndent))
 						 (progn;下行与此行缩进相同
 							 (while (= currentIndent (current-indent))
 								 (previous-line))
 							 (next-line)
 							 (beginning-of-line-text)))
-						((< previousIndent currentIndent)
-						 (progn;下行缩进比此行浅
-							 (previous-line)
-							 (beginning-of-line-text)))
 						(t
-						 (progn;下行缩进比此行深
+						 (progn;下行缩进与此行不同
 							 (previous-line)
 							 (if cursorAtBlank?;光标处于空白处，跳到缩进块首部
 								 (progn
@@ -480,7 +474,7 @@ If point reaches the end of buffer, it stops there."
 										 (previous-line))
 									 (next-line))
 								 (progn
-									 (while (< currentIndent (current-indent))
+									 (while (/= currentIndent (current-indent))
 										 (previous-line))
 									 (beginning-of-line-text))
 								 )))))))
@@ -511,20 +505,44 @@ If point reaches the end of buffer, it stops there."
 				(find-prev-indent currentIndent nil)
 				))))
 
-(defun enter-indent
+(defun enter-indent-iter (currentIndent)
+	"enter-indent的迭代器"
+	(progn
+		(next-line);向下移动光标
+		(beginning-of-line-text)
+		(cond ((< (current-indent) currentIndent);缩进比原来浅则停止于缩进块末尾
+					 (progn
+						 (previous-line)
+						 (beginning-of-line-text)))
+					((> (current-indent) currentIndent);缩进比原来深则停止于更深缩进块的开始
+					 (return))
+					(t (enter-indent-iter currentIndent)));缩进相同则继续迭代
+		))
+
+(defun enter-indent ()
 	"进入一个缩进块"
 	(interactive)
-	
-)
-(defun exit-indent
+	(enter-indent-iter (current-indent)))
+
+(defun exit-indent-iter (currentIndent)
+	"exit-indent的迭代器"
+	(progn
+		(previous-line);向上移动光标
+		(beginning-of-line-text)
+		(cond ((< (current-indent) currentIndent);缩进比原来浅则停止于更浅缩进的末尾
+					 (return))
+					(t (exit-indent-iter currentIndent)));缩进相同或者更深则继续迭代
+		))
+
+(defun exit-indent ()
 	"离开一个缩进块"
 	(interactive)
-	)
+	(exit-indent-iter (current-indent)))
 
 (global-set-key (kbd "C-M-p") 'jump-to-prev-same-column)
 (global-set-key (kbd "C-M-n") 'jump-to-next-same-column)
-(global-set-key (kbd "M-a") 'exit-indent)
-(global-set-key (kbd "M-p") 'enter-indent)
+(global-set-key (kbd "C-M-a") 'exit-indent)
+(global-set-key (kbd "C-M-e") 'enter-indent)
 	
 (defun testFunc ()
 	(interactive)
