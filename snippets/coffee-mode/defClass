@@ -2,5 +2,5 @@
 # name: define class
 # key: dc
 # --
-class ${1:ClassName}
-			constructor:(${2:})->$0
+class ${1:ClassName} ${2:extends $3}
+  constructor:$0

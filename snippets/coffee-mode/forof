@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: for..of..
-# key: forof
-# --
-for ${1:name} in ${2:obj}
-		${3:item} = $2[$1]
-		$0

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: function f:()->
+# key: f
+# --
+($1)->$0
