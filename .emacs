@@ -162,7 +162,7 @@
 ;=============================================
 ;            Basic Edit Setting
 ;=============================================
-(define-key ac-mode-map "R" 'self-insert-command)
+(define-key ac-complete-mode-map "R" 'self-insert-command)
 (defun open-init-file ( )  
   (interactive)  
   (find-file "~/.emacs"))  
