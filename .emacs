@@ -162,7 +162,7 @@
 ;=============================================
 ;            Basic Edit Setting
 ;=============================================
-(global-set-key "R" 'self-insert-command)
+(define-key ac-mode-map "R" 'self-insert-command)
 (defun open-init-file ( )  
   (interactive)  
   (find-file "~/.emacs"))  
@@ -282,7 +282,6 @@
 (auto-complete-mode t)
 
 (define-key ac-complete-mode-map "<return>"   'nil)
-(define-key ac-complete-mode-map "RET"        'nil)
 (define-key ac-complete-mode-map "<C-return>" 'ac-complete)
 
 
@@ -560,7 +559,7 @@ If point reaches the end of buffer, it stops there."
 (global-set-key [(f1)] 'auto-complete-mode)
 
 (global-set-key (kbd "M-.") 'semantic-ia-show-summary) 
-(global-set-key (kbd "M-RET") 'semantic-ia-fast-jump)
+(global-set-key (kbd "M-<return>") 'semantic-ia-fast-jump)
 ;删除到行首
 ;(global-set-key (kbd "C-M-<backspace>") "\C-u0\C-k")
 (global-set-key (kbd "C-M-<backspace>") 'delete-indentation)
