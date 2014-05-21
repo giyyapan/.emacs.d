@@ -162,10 +162,12 @@
 ;=============================================
 ;            Basic Edit Setting
 ;=============================================
+(global-set-key "R" 'self-insert-command)
 (defun open-init-file ( )  
   (interactive)  
   (find-file "~/.emacs"))  
 (global-set-key "\C-ci" 'open-init-file)  
+(global-set-key "\C-x\C-c" 'nil)
 
 ;(global-set-key "\C-z" 'undo)
 ;(global-set-key "\C-z" nil)
@@ -417,7 +419,7 @@ If point reaches the end of buffer, it stops there."
 (defun current-indent ()
 	(interactive)
 		(save-excursion
-			(beginning-of-line-text)
+			(back-to-indentation)
 			(current-column)
 			))
 
@@ -435,7 +437,7 @@ If point reaches the end of buffer, it stops there."
 							 (while (= currentIndent (current-indent))
 								 (next-line))
 							 (previous-line)
-							 (beginning-of-line-text)))
+							 (back-to-indentation)))
 						(t
 						 (progn;下行缩进与此行不同
 							 (next-line)
@@ -447,7 +449,7 @@ If point reaches the end of buffer, it stops there."
 								 (progn
 									 (while (/= currentIndent (current-indent))
 										 (next-line))
-									 (beginning-of-line-text))
+									 (back-to-indentation))
 								 )))))))
 
 (defun find-prev-indent (currentIndent cursorAtBlank?)
@@ -464,7 +466,7 @@ If point reaches the end of buffer, it stops there."
 							 (while (= currentIndent (current-indent))
 								 (previous-line))
 							 (next-line)
-							 (beginning-of-line-text)))
+							 (back-to-indentation)))
 						(t
 						 (progn;下行缩进与此行不同
 							 (previous-line)
@@ -476,7 +478,7 @@ If point reaches the end of buffer, it stops there."
 								 (progn
 									 (while (/= currentIndent (current-indent))
 										 (previous-line))
-									 (beginning-of-line-text))
+									 (back-to-indentation))
 								 )))))))
 
 (defun jump-to-next-same-column ()
@@ -509,11 +511,11 @@ If point reaches the end of buffer, it stops there."
 	"enter-indent的迭代器"
 	(progn
 		(next-line);向下移动光标
-		(beginning-of-line-text)
+		(back-to-indentation)
 		(cond ((< (current-indent) currentIndent);缩进比原来浅则停止于缩进块末尾
 					 (progn
 						 (previous-line)
-						 (beginning-of-line-text)))
+						 (back-to-indentation)))
 					((> (current-indent) currentIndent);缩进比原来深则停止于更深缩进块的开始
 					 (return))
 					(t (enter-indent-iter currentIndent)));缩进相同则继续迭代
@@ -522,13 +524,15 @@ If point reaches the end of buffer, it stops there."
 (defun enter-indent ()
 	"进入一个缩进块"
 	(interactive)
-	(enter-indent-iter (current-indent)))
+	(progn
+		(back-to-indentation)
+		(enter-indent-iter (current-indent))))
 
 (defun exit-indent-iter (currentIndent)
 	"exit-indent的迭代器"
 	(progn
 		(previous-line);向上移动光标
-		(beginning-of-line-text)
+		(back-to-indentation)
 		(cond ((< (current-indent) currentIndent);缩进比原来浅则停止于更浅缩进的末尾
 					 (return))
 					(t (exit-indent-iter currentIndent)));缩进相同或者更深则继续迭代
@@ -537,7 +541,9 @@ If point reaches the end of buffer, it stops there."
 (defun exit-indent ()
 	"离开一个缩进块"
 	(interactive)
-	(exit-indent-iter (current-indent)))
+	(progn
+		(back-to-indentation)
+		(exit-indent-iter (current-indent))))
 
 (global-set-key (kbd "C-M-p") 'jump-to-prev-same-column)
 (global-set-key (kbd "C-M-n") 'jump-to-next-same-column)
@@ -558,6 +564,8 @@ If point reaches the end of buffer, it stops there."
 ;删除到行首
 ;(global-set-key (kbd "C-M-<backspace>") "\C-u0\C-k")
 (global-set-key (kbd "C-M-<backspace>") 'delete-indentation)
+(global-set-key (kbd "C-M-<down>") 'nil)
+(global-set-key (kbd "C-M-<up>") 'nil)
 
 ;;******************
 ;; scheme
