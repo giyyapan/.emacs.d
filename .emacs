@@ -265,7 +265,8 @@
 (add-to-list 'load-path"~/.emacs.d/site-lisp/yasnippet")
  (require 'yasnippet)
 
-(yas/initialize) 
+(yas/initialize)
+(setq yas/root-directory "~/.emacs.d/snippets")
 (yas/load-directory "~/.emacs.d/snippets")
 
 
