@@ -4,6 +4,7 @@
 ;; )
 ;; (set-language-environment "Chinese-GBK")
 ;; (set-keyboard-coding-system 'chinese-iso-8bit)
+(set-face-attribute 'default nil :height 115)
 (setq default-buffer-file-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (prefer-coding-system 'utf-8)
@@ -156,7 +157,7 @@
 ;(color-theme-arjen)
 
 ;(cua-mode t)
-;(menu-bar-mode -1)
+(menu-bar-mode -1)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 ;=============================================
@@ -166,7 +167,6 @@
   (interactive)  
   (find-file "~/.emacs"))  
 (global-set-key "\C-ci" 'open-init-file)  
-(global-set-key "\C-x\C-c" 'nil)
 
 ;(global-set-key "\C-z" 'undo)
 ;(global-set-key "\C-z" nil)
@@ -265,8 +265,7 @@
 (add-to-list 'load-path"~/.emacs.d/site-lisp/yasnippet")
  (require 'yasnippet)
 
-(yas/initialize)
-(setq yas/root-directory "~/.emacs.d/snippets")
+(yas/initialize) 
 (yas/load-directory "~/.emacs.d/snippets")
 
 
@@ -282,8 +281,9 @@
 (auto-complete-mode t)
 
 (define-key ac-complete-mode-map "<return>"   'nil)
+(define-key ac-complete-mode-map "RET"        'nil)
 (define-key ac-complete-mode-map "<C-return>" 'ac-complete)
-(define-key ac-complete-mode-map "R" 'self-insert-command)
+
 
 ;; ;==========================================
 
@@ -418,7 +418,7 @@ If point reaches the end of buffer, it stops there."
 (defun current-indent ()
 	(interactive)
 		(save-excursion
-			(back-to-indentation)
+			(beginning-of-line-text)
 			(current-column)
 			))
 
@@ -436,7 +436,7 @@ If point reaches the end of buffer, it stops there."
 							 (while (= currentIndent (current-indent))
 								 (next-line))
 							 (previous-line)
-							 (back-to-indentation)))
+							 (beginning-of-line-text)))
 						(t
 						 (progn;下行缩进与此行不同
 							 (next-line)
@@ -448,7 +448,7 @@ If point reaches the end of buffer, it stops there."
 								 (progn
 									 (while (/= currentIndent (current-indent))
 										 (next-line))
-									 (back-to-indentation))
+									 (beginning-of-line-text))
 								 )))))))
 
 (defun find-prev-indent (currentIndent cursorAtBlank?)
@@ -465,7 +465,7 @@ If point reaches the end of buffer, it stops there."
 							 (while (= currentIndent (current-indent))
 								 (previous-line))
 							 (next-line)
-							 (back-to-indentation)))
+							 (beginning-of-line-text)))
 						(t
 						 (progn;下行缩进与此行不同
 							 (previous-line)
@@ -477,7 +477,7 @@ If point reaches the end of buffer, it stops there."
 								 (progn
 									 (while (/= currentIndent (current-indent))
 										 (previous-line))
-									 (back-to-indentation))
+									 (beginning-of-line-text))
 								 )))))))
 
 (defun jump-to-next-same-column ()
@@ -510,11 +510,11 @@ If point reaches the end of buffer, it stops there."
 	"enter-indent的迭代器"
 	(progn
 		(next-line);向下移动光标
-		(back-to-indentation)
+		(beginning-of-line-text)
 		(cond ((< (current-indent) currentIndent);缩进比原来浅则停止于缩进块末尾
 					 (progn
 						 (previous-line)
-						 (back-to-indentation)))
+						 (beginning-of-line-text)))
 					((> (current-indent) currentIndent);缩进比原来深则停止于更深缩进块的开始
 					 (return))
 					(t (enter-indent-iter currentIndent)));缩进相同则继续迭代
@@ -523,15 +523,13 @@ If point reaches the end of buffer, it stops there."
 (defun enter-indent ()
 	"进入一个缩进块"
 	(interactive)
-	(progn
-		(back-to-indentation)
-		(enter-indent-iter (current-indent))))
+	(enter-indent-iter (current-indent)))
 
 (defun exit-indent-iter (currentIndent)
 	"exit-indent的迭代器"
 	(progn
 		(previous-line);向上移动光标
-		(back-to-indentation)
+		(beginning-of-line-text)
 		(cond ((< (current-indent) currentIndent);缩进比原来浅则停止于更浅缩进的末尾
 					 (return))
 					(t (exit-indent-iter currentIndent)));缩进相同或者更深则继续迭代
@@ -540,9 +538,7 @@ If point reaches the end of buffer, it stops there."
 (defun exit-indent ()
 	"离开一个缩进块"
 	(interactive)
-	(progn
-		(back-to-indentation)
-		(exit-indent-iter (current-indent))))
+	(exit-indent-iter (current-indent)))
 
 (global-set-key (kbd "C-M-p") 'jump-to-prev-same-column)
 (global-set-key (kbd "C-M-n") 'jump-to-next-same-column)
@@ -559,13 +555,12 @@ If point reaches the end of buffer, it stops there."
 (global-set-key [(f1)] 'auto-complete-mode)
 
 (global-set-key (kbd "M-.") 'semantic-ia-show-summary) 
-(global-set-key (kbd "M-<return>") 'semantic-ia-fast-jump)
+(global-set-key (kbd "M-RET") 'semantic-ia-fast-jump)
 ;删除到行首
 ;(global-set-key (kbd "C-M-<backspace>") "\C-u0\C-k")
+;合并两行
 (global-set-key (kbd "C-M-<backspace>") 'delete-indentation)
-(global-set-key (kbd "C-M-<down>") 'nil)
-(global-set-key (kbd "C-M-<up>") 'nil)
-
+(global-set-key (kbd "C-m") 'back-to-indentation)
 ;;******************
 ;; scheme
 ;;******************
