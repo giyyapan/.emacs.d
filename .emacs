@@ -167,6 +167,7 @@
   (interactive)  
   (find-file "~/.emacs"))  
 (global-set-key "\C-ci" 'open-init-file)  
+(global-set-key "\M-)" nil)
 
 ;(global-set-key "\C-z" 'undo)
 ;(global-set-key "\C-z" nil)
@@ -214,6 +215,64 @@
 (global-set-key "\M-n" 'next-multiframe-window)
 (global-set-key "\M-p" 'previous-multiframe-window)
 
+;;===================php-mode================
+(add-to-list 'load-path"~/.emacs.d/site-lisp/php-mode-1.5.0")
+(require 'php-mode)
+
+
+;;==============yasnippet=======================
+(add-to-list 'load-path"~/.emacs.d/site-lisp/yasnippet")
+ (require 'yasnippet)
+
+(yas/initialize) 
+(yas/load-directory "~/.emacs.d/snippets")
+
+
+;;==============coffee-mode=================
+(add-to-list 'load-path"~/.emacs.d/site-lisp/coffee-mode/")
+ (require 'coffee-mode)
+
+;;==============auto-complete===================
+(add-to-list 'load-path"~/.emacs.d/site-lisp/auto-complete-1.3.1/")
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/site-lisp/ac-dict")
+(ac-config-default)
+(auto-complete-mode t)
+
+(define-key ac-complete-mode-map "<return>"   'nil)
+(define-key ac-complete-mode-map "RET"        'nil)
+(define-key ac-complete-mode-map "<C-return>" 'ac-complete)
+(define-key ac-complete-mode-map "R" 'self-insert-command)
+
+;; ;==========================================
+
+;; (add-to-list 'load-path "~/.emacs.d/site-lisp/slime-2012-08-01")
+;; (setq inferior-lisp-program "/usr/bin/sbcl")  ;SBCL or Clisp
+;; (require 'slime)
+;; (slime-setup '(slime-fancy))
+;; ;(slime) ;M-x slime
+
+  
+;;================c===================
+;; (require 'cc-mode)
+;; (c-set-offset 'inline-open 0)
+;; (c-set-offset 'friend '-)
+;; (c-set-offset 'substatement-open 0)
+
+;; ;;编译
+;; (defun get-compile-command-c()
+;;   "A quick compile funciton for C"
+;;   (interactive)
+;;   (setq compile-command (concat "gcc " (buffer-name (current-buffer)) " -Wall -std=c99 -g -o out"
+;;   ))
+;;   (message (concat "set compile command:" compile-command))
+;;   )
+
+;;快捷键F9
+;(define-key c-mode-base-map [(f8)] 'get-compile-command-c)
+(define-key c-mode-base-map [(f9)] 'compile)
+(global-set-key [(f10)] 'gdb)
+
 ;================creat pire char ==========
 (defun create-pair (a b)
   (interactive)  
@@ -252,67 +311,12 @@
 (global-set-key (kbd "M->") (gen-creat-string "->"))
 (global-set-key (kbd "M-C->") (gen-creat-string "=>"))
 
-(global-set-key (kbd "M-_") 'backward-paragraph)
-(global-set-key (kbd "M-+") 'forward-paragraph)
+;; (global-set-key (kbd "M-_") 'backward-paragraph)
+;; (global-set-key (kbd "M-+") 'forward-paragraph)
+
+(global-set-key (kbd "M-}") 'nil)
+
 ;========================End========================
-
-;;===================php-mode================
-(add-to-list 'load-path"~/.emacs.d/site-lisp/php-mode-1.5.0")
-(require 'php-mode)
-
-
-;;==============yasnippet=======================
-(add-to-list 'load-path"~/.emacs.d/site-lisp/yasnippet")
- (require 'yasnippet)
-
-(yas/initialize) 
-(yas/load-directory "~/.emacs.d/snippets")
-
-
-;;==============coffee-mode=================
-(add-to-list 'load-path"~/.emacs.d/site-lisp/coffee-mode/")
- (require 'coffee-mode)
-
-;;==============auto-complete===================
-(add-to-list 'load-path"~/.emacs.d/site-lisp/auto-complete-1.3.1/")
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/site-lisp/ac-dict")
-(ac-config-default)
-(auto-complete-mode t)
-
-(define-key ac-complete-mode-map "<return>"   'nil)
-(define-key ac-complete-mode-map "RET"        'nil)
-(define-key ac-complete-mode-map "<C-return>" 'ac-complete)
-
-
-;; ;==========================================
-
-;; (add-to-list 'load-path "~/.emacs.d/site-lisp/slime-2012-08-01")
-;; (setq inferior-lisp-program "/usr/bin/sbcl")  ;SBCL or Clisp
-;; (require 'slime)
-;; (slime-setup '(slime-fancy))
-;; ;(slime) ;M-x slime
-
-  
-;;================c===================
-;; (require 'cc-mode)
-;; (c-set-offset 'inline-open 0)
-;; (c-set-offset 'friend '-)
-;; (c-set-offset 'substatement-open 0)
-
-;; ;;编译
-;; (defun get-compile-command-c()
-;;   "A quick compile funciton for C"
-;;   (interactive)
-;;   (setq compile-command (concat "gcc " (buffer-name (current-buffer)) " -Wall -std=c99 -g -o out"
-;;   ))
-;;   (message (concat "set compile command:" compile-command))
-;;   )
-
-;;快捷键F9
-;(define-key c-mode-base-map [(f8)] 'get-compile-command-c)
-(define-key c-mode-base-map [(f9)] 'compile)
-(global-set-key [(f10)] 'gdb)
 
 ;;=========================================
 
@@ -560,7 +564,8 @@ If point reaches the end of buffer, it stops there."
 ;(global-set-key (kbd "C-M-<backspace>") "\C-u0\C-k")
 ;合并两行
 (global-set-key (kbd "C-M-<backspace>") 'delete-indentation)
-(global-set-key (kbd "C-m") 'back-to-indentation)
+;; (global-set-key (kbd "C-m") 'back-to-indentation)
+;; (define-key coffee-mode-map (kbd "C-m") 'back-to-indentation)
 ;;******************
 ;; scheme
 ;;******************
