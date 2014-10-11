@@ -184,7 +184,6 @@
 
 ;允许剪贴板粘贴
 (global-set-key "\C-c\C-v" 'clipboard-yank)  
-(global-set-key (kbd "C-`") 'ibuffer)  
 
 ;;没有提示音
 (setq ring-bell-function 'ignore)
@@ -617,6 +616,11 @@ If point reaches the end of buffer, it stops there."
     (paredit-mode 1)
     (define-key scheme-mode-map (kbd "<f5>") 'scheme-send-last-sexp-split-window)
     (define-key scheme-mode-map (kbd "<f6>") 'scheme-send-definition-split-window)))
+
+(add-to-list 'load-path "~/.emacs.d/dirtree")
+(require 'dirtree)
+(global-set-key (kbd "C-`") 'dirtree)  
+(global-set-key [C-tab] 'ibuffer)
 
 ;;********************
 ;;   一些快捷键记录
