@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: <audio>
+# key: audio
+# --
+<audio src="&1">
+$0
+Your browser dose not support HTML5!
+</audio>

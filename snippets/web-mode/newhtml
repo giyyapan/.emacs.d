@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: new html
+# key: newhtml
+# --
+<!DOCTYPE HTML>
+<html>
+  <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="shotcut icon" href="favicon.ico"/>
+		<link rel="stylesheet" href="${1:css/style.css}" type="text/css" />
+	</head>
+	<body>
+		$0
+	</body>
+</html>

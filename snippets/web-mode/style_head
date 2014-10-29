@@ -1,0 +1,5 @@
+#key :<style
+# --
+<style type="${text/css}" ${media="screen"}>
+   $0
+</style>

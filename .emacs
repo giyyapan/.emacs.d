@@ -140,18 +140,17 @@
 ;============================================
 ;             GLSL Mode
 ;============================================
-(load-file"~/.emacs.d/site-lisp/glsl-mode.el")
+(load-file "~/.emacs.d/site-lisp/glsl-mode.el")
 
 ;============================================
 ;             json Mode
 ;============================================
-(load-file"~/.emacs.d/site-lisp/json-mode/json-mode.el")
+(load-file "~/.emacs.d/site-lisp/json-mode/json-mode.el")
 
 ;============================================
 ;             less Mode
 ;============================================
-(load-file"~/.emacs.d/site-lisp/less-css-mode/less-css-mode.el")
-
+(load-file "~/.emacs.d/site-lisp/less-css-mode/less-css-mode.el")
 
 ;(load-file"~/.emacs.d/site-lisp/color-theme/themes/color-theme-library.el")
 ;(color-theme-arjen)
@@ -622,6 +621,10 @@ If point reaches the end of buffer, it stops there."
 (global-set-key (kbd "C-`") 'dirtree)  
 (global-set-key [C-tab] 'ibuffer)
 
+(add-to-list 'auto-mode-alist '("\\.ejs\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.handlebars\\'" . web-mode))
+(auto-save-mode -1)
 ;;********************
 ;;   一些快捷键记录
 ;;********************

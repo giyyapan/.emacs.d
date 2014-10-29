@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: data-id=''
+# key: did
+# --
+data-id="$0" 

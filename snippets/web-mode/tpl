@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: <template tpl-name=''>
+# key: tpl
+# --
+<template tpl-name="$1"></template>$0

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: target="_blank"
+# key: target
+# --
+target="${1:_blank}" $0
