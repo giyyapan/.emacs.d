@@ -2,5 +2,5 @@
 # name: DocType HTML5
 # key: doctype
 # --
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 $0
