@@ -11,8 +11,13 @@
 ;;================package=============
 (require 'package)
 (add-to-list 'package-archives 
-    '("marmalade" .
-      "http://marmalade-repo.org/packages/"))
+						 '("marmalade" .
+							 "http://marmalade-repo.org/packages/"))
+;; (add-to-list 'package-archives
+;;              '("melpa" . "http://melpa.org/packages/") t)
+;; (when (< emacs-major-version 24)
+;;   ;; For important compatibility libraries like cl-lib
+;;   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
 
 ;;===============color===============
@@ -176,6 +181,7 @@
 (global-set-key "\C-cl" 'goto-line)
 (global-set-key (kbd "C-t") 'switch-to-buffer)
 
+(setq-default indent-tabs-mode nil)
 (setq default-tab-width 2)
 (setq tab-width 2)
 
@@ -212,6 +218,9 @@
 
 (global-set-key "\M-n" 'next-multiframe-window)
 (global-set-key "\M-p" 'previous-multiframe-window)
+(global-set-key (kbd "C-M-j") 'next-multiframe-window)
+(global-set-key (kbd "C-M-k") 'previous-multiframe-window)
+
 
 ;;===================php-mode================
 (add-to-list 'load-path"~/.emacs.d/site-lisp/php-mode-1.5.0")
@@ -564,6 +573,8 @@ If point reaches the end of buffer, it stops there."
 (global-set-key (kbd "C-M-<backspace>") 'delete-indentation)
 ;; (global-set-key (kbd "C-m") 'back-to-indentation)
 ;; (define-key coffee-mode-map (kbd "C-m") 'back-to-indentation)
+;;冲载入buffer
+(global-set-key (kbd "M-r") 'revert-buffer)
 ;;******************
 ;; scheme
 ;;******************
@@ -624,7 +635,7 @@ If point reaches the end of buffer, it stops there."
 (add-to-list 'auto-mode-alist '("\\.ejs\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.handlebars\\'" . web-mode))
-(auto-save-mode -1)
+
 ;;********************
 ;;   一些快捷键记录
 ;;********************
