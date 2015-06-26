@@ -156,6 +156,17 @@
 ;             less Mode
 ;============================================
 (load-file "~/.emacs.d/site-lisp/less-css-mode/less-css-mode.el")
+(eval-after-load "less-mode"
+  '(progn
+     (define-key less-css-compile [(f5)] 'less-css-compile)))
+
+;;==============coffee-mode=================
+(add-to-list 'load-path"~/.emacs.d/site-lisp/coffee-mode/")
+(require 'coffee-mode)
+(eval-after-load "coffee-mode"
+  '(progn
+     (define-key coffee-mode-map [(f5)] 'coffee-compile-file)))
+(custom-set-variables '(coffee-tab-width 2))
 
 ;(load-file"~/.emacs.d/site-lisp/color-theme/themes/color-theme-library.el")
 ;(color-theme-arjen)
@@ -182,8 +193,11 @@
 (global-set-key (kbd "C-t") 'switch-to-buffer)
 
 (setq-default indent-tabs-mode nil)
-(setq default-tab-width 2)
 (setq tab-width 2)
+(setq default-tab-width 2)
+(setq js-indent-level 2)
+(setq c-basic-offset 2)
+(setq cperl-indent-level 2)
 
 (global-set-key [f1] 'save-buffer)
 
@@ -233,11 +247,6 @@
 
 (yas/initialize) 
 (yas/load-directory "~/.emacs.d/snippets")
-
-
-;;==============coffee-mode=================
-(add-to-list 'load-path"~/.emacs.d/site-lisp/coffee-mode/")
- (require 'coffee-mode)
 
 ;;==============auto-complete===================
 (add-to-list 'load-path"~/.emacs.d/site-lisp/auto-complete-1.3.1/")
