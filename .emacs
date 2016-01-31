@@ -155,10 +155,10 @@
 ;============================================
 ;             less Mode
 ;============================================
-(load-file "~/.emacs.d/site-lisp/less-css-mode/less-css-mode.el")
-(eval-after-load "less-mode"
-  '(progn
-     (define-key less-css-compile [(f5)] 'less-css-compile)))
+;; (load-file "~/.emacs.d/site-lisp/less-css-mode/less-css-mode.el")
+;; (eval-after-load "less-mode"
+;;   '(progn
+;;      (define-key less-css-compile [(f5)] 'less-css-compile)))
 
 ;;==============coffee-mode=================
 (add-to-list 'load-path"~/.emacs.d/site-lisp/coffee-mode/")
