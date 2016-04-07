@@ -8,6 +8,31 @@
 (setq default-buffer-file-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (prefer-coding-system 'utf-8)
+
+;;============== overwrite minor mode keybindings =========
+(add-hook 'after-load-functions 'my-keys-have-priority)
+
+(defun my-keys-have-priority (_file)
+  "Try to ensure that my keybindings retain priority over other minor modes.
+
+Called via the `after-load-functions' special hook."
+  (unless (eq (caar minor-mode-map-alist) 'my-keys-minor-mode)
+    (let ((mykeys (assq 'my-keys-minor-mode minor-mode-map-alist)))
+      (assq-delete-all 'my-keys-minor-mode minor-mode-map-alist)
+      (add-to-list 'minor-mode-map-alist mykeys))))
+
+;;============== tramp mode auto save to local =============
+(setq tramp-auto-save-directory "~/.emacs.d/tramp-autosave")
+
+;;============== handle autosave files ==============
+;; Save all tempfiles in $TMPDIR/emacs$UID/                                                        
+(defconst emacs-tmp-dir (format "%s%s%s/" temporary-file-directory "emacs" (user-uid)))
+(setq backup-directory-alist
+      `((".*" . ,emacs-tmp-dir)))
+(setq auto-save-file-name-transforms
+      `((".*" ,emacs-tmp-dir t)))
+(setq auto-save-list-file-prefix
+      emacs-tmp-dir)
 ;;================package=============
 (require 'package)
 (add-to-list 'package-archives 
@@ -168,6 +193,9 @@
      (define-key coffee-mode-map [(f5)] 'coffee-compile-file)))
 (custom-set-variables '(coffee-tab-width 2))
 
+;;==============css-mode====================
+(custom-set-variables '(css-indent-offset 2))
+
 ;(load-file"~/.emacs.d/site-lisp/color-theme/themes/color-theme-library.el")
 ;(color-theme-arjen)
 
@@ -183,11 +211,14 @@
   (find-file "~/.emacs"))  
 (global-set-key "\C-ci" 'open-init-file)  
 (global-set-key "\M-)" nil)
+(global-set-key "\C-j" 'newline)
 
 ;(global-set-key "\C-z" 'undo)
 ;(global-set-key "\C-z" nil)
-(global-set-key (kbd "C-<") 'beginning-of-buffer)
-(global-set-key (kbd "C->") 'end-of-buffer)
+(global-set-key (kbd "M-\\") 'beginning-of-buffer)
+(global-set-key (kbd "M-/") 'end-of-buffer)
+(global-set-key (kbd "C-M-f") 'rgrep)
+
 
 (global-set-key "\C-cl" 'goto-line)
 (global-set-key (kbd "C-t") 'switch-to-buffer)
@@ -643,6 +674,7 @@ If point reaches the end of buffer, it stops there."
 
 (add-to-list 'auto-mode-alist '("\\.ejs\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.handlebars\\'" . web-mode))
 
 ;;********************

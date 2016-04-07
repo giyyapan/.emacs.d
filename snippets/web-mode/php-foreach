@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: php-foreach
+# key: pforeach
+# --
+<?php foreach(${1:$arr} as ${2:$key => $var}): ?>
+  $0
+<?php endforeach ?>
